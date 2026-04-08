@@ -1,0 +1,8 @@
+//
+// Created by jorge on 4/8/2026.
+//
+
+#ifndef LABERINTO_CATALOGO_PIEZAS_H
+#define LABERINTO_CATALOGO_PIEZAS_H
+
+#endif //LABERINTO_CATALOGO_PIEZAS_H
