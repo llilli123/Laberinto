@@ -15,11 +15,11 @@ static Pieza crear_pieza_vacia(void) {
 
     strcpy(p.nombre, "VACIA");
 
-    for (i = 0; i < PIEZA_ALTO; i++) {
-        for (j = 0; j < PIEZA_ANCHO; j++) {
+    for (i = 0; i < ALTO; i++) {
+        for (j = 0; j < ANCHO; j++) {
             p.forma[i][j] = '#';
         }
-        p.forma[i][PIEZA_ANCHO] = '\0';
+        p.forma[i][ANCHO] = '\0';
     }
 
     p.arriba = 0;

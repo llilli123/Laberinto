@@ -3,6 +3,7 @@
 
 #define ALTO 5
 #define ANCHO 7
+#define MAX_PIEZAS 20
 
 typedef struct {
     char nombre[40];
