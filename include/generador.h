@@ -17,11 +17,11 @@
    y simplemente incluir ese header aquí.
    ========================================================= */
 #ifndef GRID_FILAS
-#define GRID_FILAS 3
+#define GRID_FILAS 10
 #endif
 
 #ifndef GRID_COLS
-#define GRID_COLS 3
+#define GRID_COLS 10
 #endif
 
 #ifndef MAX_INTENTOS_GENERACION

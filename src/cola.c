@@ -15,6 +15,7 @@ int cola_vacia(Cola *c) {
     return c->frente == NULL;
 }
 
+
 // Inserta una posición al final de la cola
 void encolar(Cola *c, Posicion p) {
 
@@ -75,5 +76,13 @@ Posicion desencolar(Cola *c) {
     // Liberamos el nodo anterior
     free(temp);
 
+
+
     return dato;
+}
+
+void liberar_cola(Cola *c) {
+    while (!cola_vacia(c)) {
+        desencolar(c);
+    }
 }

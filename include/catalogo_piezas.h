@@ -3,7 +3,7 @@
 
 #include "pieza.h"
 
-#define MAX_PIEZAS 20
+
 
 void cargar_catalogo_piezas(Pieza catalogo[], int *cantidad);
 

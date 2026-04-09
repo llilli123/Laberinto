@@ -3,8 +3,8 @@
 
 Posicion inicializar_jugador(int fila_inicio, int col_inicio) {
     Posicion p;
-    p.y = fila_inicio;
-    p.x = col_inicio;
+    p.fila = fila_inicio;
+    p.col = col_inicio;
     return p;
 }
 
@@ -16,7 +16,7 @@ int puede_moverse(char **mapa, int filas_mapa, int col_mapa, int nueva_fila, int
 
     // 2. Riesgo mitigado: No pisar paredes
     char destino = mapa[nueva_fila][nueva_col];
-    if (destino == ' ' || destino == 'S' || destino == '*') {
+    if (destino == ' ' || destino == 'S' || destino == '*' || destino == 'E')  {
         return 1; // Verdadero, es transitable
     }
 
@@ -24,8 +24,8 @@ int puede_moverse(char **mapa, int filas_mapa, int col_mapa, int nueva_fila, int
 }
 
 void mover_jugador(Posicion *jugador, char direccion, char **mapa, int filas_mapa, int col_mapa) {
-    int nueva_fila = jugador->y;
-    int nueva_col = jugador->x;
+    int nueva_fila = jugador->fila;
+    int nueva_col = jugador->col;
 
     // Convertir a mayúscula para aceptar tanto 'w' como 'W'
     switch(toupper(direccion)) {
@@ -38,11 +38,11 @@ void mover_jugador(Posicion *jugador, char direccion, char **mapa, int filas_map
 
     if (puede_moverse(mapa, filas_mapa, col_mapa, nueva_fila, nueva_col)) {
         // Actualizar posición correctamente en la estructura
-        jugador->y = nueva_fila;
-        jugador->x = nueva_col;
+        jugador->fila = nueva_fila;
+        jugador->col = nueva_col;
     }
 }
 
 int llego_a_salida(Posicion jugador, Posicion salida) {
-    return (jugador.x == salida.x && jugador.y == salida.y);
+    return (jugador.col == salida.col && jugador.fila == salida.fila);
 }

@@ -1,13 +1,7 @@
 #ifndef COLA_H
 #define COLA_H
 
-// Estructura que representa una posición en el mapa
-// fila = fila del mapa
-// col = columna del mapa
-typedef struct {
-    int fila;
-    int col;
-} Posicion;
+#include "posicion.h"
 
 // Nodo de la cola
 // Guarda una posición y un puntero al siguiente nodo
@@ -24,6 +18,7 @@ typedef struct {
     Nodo *final;
 } Cola;
 
+void liberar_cola(Cola *c);
 // Inicializa la cola vacía
 void inicializar_cola(Cola *c);
 

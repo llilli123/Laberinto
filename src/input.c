@@ -5,10 +5,10 @@
 #include <ctype.h>
 #include "input.h"
 
+#include <conio.h>   // IMPORTANTE
+
 char leer_tecla(void) {
-    char tecla;
-    scanf(" %c", &tecla);
-    return tecla;
+    return _getch(); // lee sin Enter
 }
 
 Accion convertir_tecla_a_movimiento(char tecla) {

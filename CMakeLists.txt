@@ -18,6 +18,7 @@ add_executable(Laberinto
         src/input.c
         src/juego.c
         src/ranking.c
+        include/posicion.h
 )
 
 # 🔥 AQUÍ está la clave

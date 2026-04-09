@@ -5,6 +5,7 @@
 // Verifica si una posición está dentro del mapa
 // f = fila, c = columna
 int es_valida(int f, int c, int filas, int cols) {
+
     return f >= 0 && f < filas && c >= 0 && c < cols;
 }
 
@@ -13,11 +14,16 @@ int es_valida(int f, int c, int filas, int cols) {
 // 'E' = entrada
 // 'S' = salida
 int es_transitable(char c) {
+
     return c == ' ' || c == 'E' || c == 'S';
 }
 
 // Busca la entrada (E) y la salida (S) dentro del mapa
 void buscar_puntos(char **mapa, int filas, int cols, Posicion *inicio, Posicion *salida) {
+    inicio->fila = -1;
+    inicio->col = -1;
+    salida->fila = -1;
+    salida->col = -1;
 
     for (int i = 0; i < filas; i++) {
         for (int j = 0; j < cols; j++) {
@@ -40,7 +46,13 @@ void buscar_puntos(char **mapa, int filas, int cols, Posicion *inicio, Posicion 
 // BFS: busca camino usando una cola
 int bfs_hay_camino(char **mapa, int filas, int cols) {
 
+
     Posicion inicio, salida;
+
+    if (inicio.fila == -1 || inicio.col == -1 || salida.fila == -1 || salida.col == -1) {
+
+        return 0;
+    }
 
     // Encontramos inicio y salida
     buscar_puntos(mapa, filas, cols, &inicio, &salida);
@@ -72,6 +84,7 @@ int bfs_hay_camino(char **mapa, int filas, int cols) {
 
         // Si llegamos a la salida → hay camino
         if (actual.fila == salida.fila && actual.col == salida.col) {
+            liberar_cola(&cola);
             return 1;
         }
 
@@ -99,6 +112,7 @@ int bfs_hay_camino(char **mapa, int filas, int cols) {
         }
     }
 
+    liberar_cola(&cola);
     // Si nunca se llegó a la salida, no hay camino
     return 0;
 }

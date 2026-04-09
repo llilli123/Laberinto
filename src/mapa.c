@@ -3,15 +3,12 @@
 #include <stdio.h>
 
 char **crear_mapa(int filas, int columnas) {
-    // Reservar memoria para el arreglo de punteros a filas
     char **mapa = (char **)malloc(filas * sizeof(char *));
     if (mapa == NULL) return NULL;
 
-    // Reservar memoria para cada columna dentro de la fila
     for (int i = 0; i < filas; i++) {
         mapa[i] = (char *)malloc(columnas * sizeof(char));
         if (mapa[i] == NULL) {
-            // Manejo de error: liberar lo reservado si falla a la mitad
             liberar_mapa(mapa, i);
             return NULL;
         }
@@ -19,21 +16,25 @@ char **crear_mapa(int filas, int columnas) {
     return mapa;
 }
 
-void ensamblar_mapa(char **mapa_final, char ***piezas_grid, int filas_grid, int col_grid, int alto_pieza, int ancho_pieza) {
-    // Riesgo mitigado: Copiar manteniendo dimensiones correctas
-    for (int fila_g = 0; fila_g < filas_grid; fila_g++) {
-        for (int col_g = 0; col_g < col_grid; col_g++) {
-            
-            // Acceder a la pieza actual del grid
-            char **pieza_actual = piezas_grid[fila_g * col_grid + col_g]; 
-            
-            // Copiar los caracteres de la pieza al mapa final
-            for (int i = 0; i < alto_pieza; i++) {
-                for (int j = 0; j < ancho_pieza; j++) {
-                    int pos_y_final = (fila_g * alto_pieza) + i;
-                    int pos_x_final = (col_g * ancho_pieza) + j;
-                    
-                    mapa_final[pos_y_final][pos_x_final] = pieza_actual[i][j];
+void ensamblar_mapa_desde_grid(Pieza grid[GRID_FILAS][GRID_COLS],
+                               char mapa[][100],
+                               int filas_mapa,
+                               int cols_mapa) {
+    int fila_grid, col_grid, i, j;
+
+    for (int f = 0; f < filas_mapa; f++) {
+        for (int c = 0; c < cols_mapa; c++) {
+            mapa[f][c] = '#';
+        }
+    }
+
+    for (fila_grid = 0; fila_grid < GRID_FILAS; fila_grid++) {
+        for (col_grid = 0; col_grid < GRID_COLS; col_grid++) {
+            for (i = 0; i < ALTO; i++) {
+                for (j = 0; j < ANCHO; j++) {
+                    int fila_mapa = fila_grid * ALTO + i;
+                    int col_mapa = col_grid * ANCHO + j;
+                    mapa[fila_mapa][col_mapa] = grid[fila_grid][col_grid].forma[i][j];
                 }
             }
         }
@@ -41,11 +42,11 @@ void ensamblar_mapa(char **mapa_final, char ***piezas_grid, int filas_grid, int 
 }
 
 void colocar_inicio(char **mapa, Posicion inicio) {
-    mapa[inicio.y][inicio.x] = 'I'; // O el caracter que uses para el inicio
+    mapa[inicio.fila][inicio.col] = 'E';
 }
 
 void colocar_salida(char **mapa, Posicion salida) {
-    mapa[salida.y][salida.x] = 'S';
+    mapa[salida.fila][salida.col] = 'S';
 }
 
 void liberar_mapa(char **mapa, int filas) {

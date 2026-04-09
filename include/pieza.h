@@ -1,9 +1,9 @@
 #ifndef PIEZA_H
 #define PIEZA_H
 
-#define ALTO 5
-#define ANCHO 7
-#define MAX_PIEZAS 20
+#define ALTO 3
+#define ANCHO 3
+#define MAX_PIEZAS 32
 
 typedef struct {
     char nombre[40];

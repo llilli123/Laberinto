@@ -1,11 +1,7 @@
 #ifndef JUGADOR_H
 #define JUGADOR_H
 
-// Estructura básica para manejar coordenadas
-typedef struct {
-    int x; // Columna
-    int y; // Fila
-} Posicion;
+#include "posicion.h"
 
 Posicion inicializar_jugador(int fila_inicio, int col_inicio);
 int puede_moverse(char **mapa, int filas_mapa, int col_mapa, int nueva_fila, int nueva_col);
