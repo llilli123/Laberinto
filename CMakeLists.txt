@@ -1,9 +1,10 @@
-cmake_minimum_required(VERSION 4.2)
+cmake_minimum_required(VERSION 3.10)  # 4.2 no es estándar aún
 project(Laberinto C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(Laberinto src/main.c
+add_executable(Laberinto
+        src/main.c
         src/pieza.c
         src/catalogo_piezas.c
         src/generador.c
@@ -17,16 +18,7 @@ add_executable(Laberinto src/main.c
         src/input.c
         src/juego.c
         src/ranking.c
-        include/pieza.h
-        include/catalogo_piezas.h
-        include/generador.h
-        include/mapa.h
-        include/jugador.h
-        include/cola.h
-        include/pila.h
-        include/lista.h
-        include/validador.h
-        include/render.h
-        include/input.h
-        include/juego.h
-        include/ranking.h)
+)
+
+# 🔥 AQUÍ está la clave
+target_include_directories(Laberinto PRIVATE include)

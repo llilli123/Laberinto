@@ -1,8 +1,10 @@
-//
-// Created by jorge on 4/8/2026.
-//
+#ifndef CATALOGO_PIEZAS_H
+#define CATALOGO_PIEZAS_H
 
-#ifndef LABERINTO_CATALOGO_PIEZAS_H
-#define LABERINTO_CATALOGO_PIEZAS_H
+#include "pieza.h"
 
-#endif //LABERINTO_CATALOGO_PIEZAS_H
+#define MAX_PIEZAS 20
+
+void cargar_catalogo_piezas(Pieza catalogo[], int *cantidad);
+
+#endif

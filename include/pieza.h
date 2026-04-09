@@ -1,8 +1,33 @@
-//
-// Created by jorge on 4/8/2026.
-//
+#ifndef PIEZA_H
+#define PIEZA_H
 
-#ifndef LABERINTO_PIEZA_H
-#define LABERINTO_PIEZA_H
+#define ALTO 5
+#define ANCHO 7
 
-#endif //LABERINTO_PIEZA_H
+typedef struct {
+    char nombre[40];
+    char forma[ALTO][ANCHO + 1];
+    int arriba;
+    int abajo;
+    int izquierda;
+    int derecha;
+} Pieza;
+
+// Crear pieza
+Pieza crear_pieza(const char *nombre,
+                  const char forma[ALTO][ANCHO + 1],
+                  int arriba, int abajo, int izquierda, int derecha);
+
+// Copiar pieza
+void copiar_pieza(Pieza *destino, const Pieza *origen);
+
+// Imprimir pieza
+void imprimir_pieza(const Pieza *p);
+
+// Consultar puertas
+int tiene_puerta_arriba(const Pieza *p);
+int tiene_puerta_abajo(const Pieza *p);
+int tiene_puerta_izquierda(const Pieza *p);
+int tiene_puerta_derecha(const Pieza *p);
+
+#endif
